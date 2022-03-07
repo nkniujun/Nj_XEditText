@@ -1,0 +1,3 @@
+rootProject.name='Nj_XEditText'
+include ':app'
+include ':module1'

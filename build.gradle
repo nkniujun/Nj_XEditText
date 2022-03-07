@@ -1,0 +1,53 @@
+//引入自定义gradle配置文件
+apply from:"config.gradle"
+
+buildscript {
+    
+    repositories {
+        google()
+        jcenter()
+        
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.6.3'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        
+    }
+}
+
+this.getProjects()
+def getProjects() {
+    println '--------------------------'
+    println 'Root Project'
+    println '--------------------------'
+    this.getAllprojects().eachWithIndex { Project project, int index ->
+        if (index == 0) {
+            println "1 > Root project:'${project.name}'"
+        } else {
+            println "2 > project:'${project.name}'"
+        }
+    }
+}
+
+def mCompileSdkVersion = 29
+
+this.getSubProjects()
+def getSubProjects() {
+    println '--------------------------'
+    println 'Sub Project'
+    println '--------------------------'
+    this.getSubprojects().eachWithIndex { Project project, int index ->
+        println "+---- project:'${project.name}'"
+    }
+}
+//原文链接：https://blog.csdn.net/qq282330332/article/details/90963422
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
